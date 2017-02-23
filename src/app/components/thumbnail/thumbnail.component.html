@@ -1,0 +1,4 @@
+<div *ngIf="media" class="thumbnail" (click)="gotoDetail(id, media.title)" style="height: 410px; cursor: pointer;">
+    <img [src]="getMoviePoster(media, 'w342')" style="height: 340px;">
+    <p style="text-align: center; font-weight: bold;">{{ media.title }}</p>
+</div>

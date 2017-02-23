@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  moduleId: module.id,
+  selector: 'binge',
+  templateUrl: 'app.component.html'
 })
-export class AppComponent {
-  title = 'app works!';
+
+export class AppComponent
+{
+  title: string = 'B I N G E';
+
+  constructor(title: Title) {
+    title.setTitle(this.title);
+  }
 }

@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="form-horizontal">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <div class="col-lg-5">
+                    <input type="text" class="form-control" [(ngModel)]="personName" (keyup.enter)="searchPersons()" (focus)="personName = ''" id="personName" placeholder="Person name..." autofocus />
+                </div>
+                <div class="col-lg-7">
+                    <button class="btn btn-default" [class.btn-warning]="adult" (click)="toggleAdult()">Include adult</button>
+                    <button class="btn btn-primary" (click)="searchPersons()">Find persons</button>
+                    <button class="btn btn-default" (click)="clearPersons()">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <table *ngIf="persons.length > 0" class="table table-striped">
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Birthday</th>
+                <th>Adult</th>
+            </tr>
+            <tr *ngFor="let person of persons" (click)="gotoPersonDetail(person)">
+                <td><img [src]="getImage(person.profile_path, 'w45')" [alt]="person.name" class="moviePoster"/></td>
+                <td class="movieTitle">{{ person.name }}</td>
+                <td class="movieTitle">{{ person.birthday | date }}</td>
+                <td class="adult"><img *ngIf="person.adult" src="app/images/porn_folder.png"></td>
+            </tr>
+        </table>
+        <span *ngIf="displayNoPersonsFound"> No persons found </span>
+    </div>
+    <!--<div class="col-lg-6" *ngIf="selectedPerson">-->
+        <!--<person-detail [movie]="selectedPerson" (addFavorite)="onAddFavorite($event)"></person-detail>-->
+    <!--</div>-->
+</div>
+
+<!--<div *ngIf="persons.length > 0">-->
+    <!--<a data-toggle="collapse" [attr.href]="'#' + headerTitle"><h3>{{ headerTitle }}</h3></a>-->
+    <!--<ul [id]="headerTitle" class="panel-collapse collapse row persons">-->
+        <!--<li class="col-lg-5" *ngFor="let person of persons">-->
+            <!--<div class="col-lg-5"><img [src]="getProfileImage(person, 'w45')" (click)="selectPerson(person)" /></div>-->
+            <!--<div class="col-lg-7">-->
+                <!--<div class="row personName" (click)="gotoPersonDetail(person)">{{ person.name }}</div>-->
+                <!--<div *ngIf="person.character" class="row job">{{ person.character }}</div>-->
+                <!--<div *ngIf="person.job" class="row job">{{ person.job }}</div>-->
+            <!--</div>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->

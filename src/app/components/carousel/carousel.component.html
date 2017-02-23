@@ -1,0 +1,23 @@
+<div [id]="options.id" class="carousel slide" [style.width]="options.width +'px'">
+    <!-- Indicators -->
+    <ol class="carousel-indicators" *ngIf="images < 10">
+        <li [attr.data-target]="'#' + options.id" [attr.data-slide-to]="i" class="{{ isFirst ? 'active' : ''}}" *ngFor="let image of images; let isFirst = first; let i = index;">
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item {{ isFirst ? 'active' : ''}}" *ngFor="let image of images; let isFirst = first;">
+            <img [src]="getImage(image.filePath, options.imageWidth)"/>
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" [href]="'#' + options.id" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" [href]="'#' + options.id" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

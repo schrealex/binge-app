@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="form-horizontal">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <div class="col-lg-7">
+                    <input type="text" class="form-control" [(ngModel)]="searchSeriesTitle" (keyup.enter)="searchSeries()" id="serieTitle" placeholder="Serie title..." autofocus />
+                </div>
+                <div class="col-lg-5">
+                    <button class="btn btn-primary" (click)="searchSeries()">Find series</button>
+                    <button class="btn btn-default" (click)="clearSeries()">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <table *ngIf="series.length > 0" class="table table-striped">
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Title</th>
+                <th>Year</th>
+            </tr>
+            <tr *ngFor="let serie of series" (click)="selectSerie(serie)">
+                <td><i [class.grey]="!serie.favorite" class="fa fa-heart" aria-hidden="true"></i></td>
+                <td><img [src]="getSeriePoster(serie)" [alt]="serie.title" class="moviePoster"/></td>
+                <td class="movieTitle">{{ serie.title }}</td>
+                <td><span class="movieYear">{{ serie.airDate | dateFormat:'yyyy' }}</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-6" *ngIf="selectedSerie">
+        <serie-detail [serie]="selectedSerie" (addFavorite)="onAddFavorite($event)"></serie-detail>
+    </div>
+</div>
+
+<div class="row" *ngIf="selectedSerie">
+    <div class="col-lg-12">
+        <media-recommendations [media]="selectedSerie"></media-recommendations>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<div id="recommendations" style="display: block; overflow-y: hidden; overflow-x: scroll; white-space: nowrap;" (mousewheel)="onScrollScrollLeft($event)">
+    <div *ngFor="let recommendation of recommendations"  class="recommendation" style="display: inline-block; width: 250px; margin: 0 15px 0 0;">
+        <img [src]="getMediaPoster(recommendation)">
+        <p style="text-align: center; font-weight: bold;">{{recommendation.title}}</p>
+    </div>
+</div>
+

@@ -1,0 +1,23 @@
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.persons li {
+    margin: 5px;
+    padding: 0;
+}
+
+.persons img {
+    height: 68px;
+    width: 45px;
+}
+
+li .personName {
+    font-weight: bold;
+    width: 130px;
+}
+
+li .job {
+    width: 130px;
+}

@@ -1,0 +1,49 @@
+.moviePosterBig{
+    max-height: 240px;
+    float : right;
+
+    margin: 4px;
+    -webkit-border-radius :4px;
+    -moz-border-radius    :4px;
+    border-radius         :4px;
+    border: 2px solid #000;
+}
+
+.jumbotron h1{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.subtext {
+    font-size: 11px;
+    color: silver;
+}
+
+.favoriteLink {
+    color: #ff0000;
+    font-size: 32px;
+}
+
+.favoriteLink.grey {
+    color: #808080;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.persons li {
+    margin: 5px;
+    padding: 0;
+}
+
+.persons img {
+    height: 68px;
+    width: 45px;
+}
+
+li .personName {
+    font-weight: bold;
+    width: 120px;
+}

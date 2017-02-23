@@ -1,0 +1,22 @@
+<div class="jumbotron" *ngIf="movieInformation">
+
+    <span class="favoriteLink" [class.grey]="!movieInformation.favorite" (click)="onAddFavorite()"><i class="fa fa-heart" aria-hidden="true"></i></span>
+
+    <img [src]="getMoviePoster(movieInformation)" class="moviePosterBig"/>
+
+    <h1>{{ movieInformation.title }} ({{ movieInformation.releaseDate | dateFormat:'yyyy' }})</h1>
+
+    <div class="subtext">
+        {{ movieInformation.runtime }} minutes
+    </div>
+
+    {{ movieInformation.plot }}
+
+    <genres [genres]="movieInformation.genres"></genres>
+
+    <persons [headerTitle]="'Actors'" [persons]="movieInformation.actors"></persons>
+    <persons [headerTitle]="'Directing'" [persons]="movieInformation.directors"></persons>
+    <persons [headerTitle]="'Production'" [persons]="movieInformation.producers"></persons>
+    <persons [headerTitle]="'Writing'" [persons]="movieInformation.writers"></persons>
+
+</div>

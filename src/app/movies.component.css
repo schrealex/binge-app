@@ -1,0 +1,25 @@
+.moviePoster {
+    max-height : 80px;
+}
+
+.movieTitle:hover {
+    font-weight: bold;
+}
+
+.movieYear {
+    font-weight : bold;
+}
+
+tr {
+    cursor : pointer;
+}
+
+.fa-heart {
+    color: #ff0000;
+    font-size: 24px;
+    margin-top: 26px;
+}
+
+.fa-heart.grey {
+    color: #808080;
+}

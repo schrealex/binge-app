@@ -1,0 +1,27 @@
+<div class="jumbotron" *ngIf="serieInformation">
+
+    <span class="favoriteLink" [class.grey]="!serieInformation.favorite" (click)="onAddFavorite()"><i class="fa fa-heart" aria-hidden="true"></i></span>
+
+    <img [src]="getSeriePoster(serieInformation)" class="mediaPosterBig"/>
+
+    <a href="{{ 'http://www.imdb.com/title/' + serieInformation.imdbId }}"><h1>{{ serieInformation.title }} ({{ serieInformation.firstAirDate | dateFormat:'yyyy' }})</h1></a>
+
+    <div class="subtext">
+        ~ {{ getAverageRuntime(serieInformation) }} minutes
+    </div>
+
+    {{ serieInformation.plot }}
+
+    <genres [genres]="serieInformation.genres"></genres>
+
+    <persons [headerTitle]="'Actors'" [persons]="serieInformation.actors"></persons>
+    <persons [headerTitle]="'Directing'" [persons]="serieInformation.directors"></persons>
+    <persons [headerTitle]="'Production'" [persons]="serieInformation.producers"></persons>
+    <persons [headerTitle]="'Writing'" [persons]="serieInformation.writers"></persons>
+
+    <h3>Posters</h3>
+    <!--<carousel [carouselId]="'postersCarousel'" [navigation]="false" [images]="serieInformation.posters"></carousel>-->
+
+    <h3>Backdrops</h3>
+    <!--<carousel [carouselId]="'backdropsCarousel'" [navigation]="false" [images]="serieInformation.backdrops"></carousel>-->
+</div>

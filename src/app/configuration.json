@@ -1,0 +1,14 @@
+  [
+  {
+    "enviroment" : "development",
+    "apiKey" : "f16bfeb0210b43f1f12d8d4ccc114ee9",
+    "username" : "CE_REAL",
+    "password": "SiNGInfeGOnEiDEcTOPU"
+  },
+  {
+    "enviroment" : "production",
+    "apiKey" : "t.b.d.",
+    "username" : "t.b.d.",
+    "password": "t.b.d."
+  }
+]

@@ -1,0 +1,4 @@
+<div *ngIf="genres.length > 0">
+    <h3>Genres</h3>
+    <span *ngFor="let genre of genres; let isLast = last">{{ genre.name }}{{ isLast ? '' : ', '}}</span>
+</div>
