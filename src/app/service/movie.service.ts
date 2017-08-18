@@ -66,16 +66,30 @@ export class MovieService
   {
     return this.apiAuthenticationService.getSessionId().flatMap(sessionId =>
     {
-      return this.http.get(favoriteMoviesUrl(sessionId, 1))
-      .map(result =>
-      {
-        if (result.json().total_pages === 1)
-        {
-          return <Movie[]> result.json().results;
-        } else {
-          return this.http.get(favoriteMoviesUrl(sessionId, 1));
-        }
-      });
+      return this.http.get(favoriteMoviesUrl(sessionId, 2))
+          .map(result => {
+            console.log(result.json());
+            return <Movie[]> result.json().results;
+          })
+          .map(this.mapResponseToMovies())
+          .debounceTime(500)
+          .distinctUntilChanged()
+          .catch(this.handleError);
+    });
+
+    // return this.apiAuthenticationService.getSessionId().flatMap(sessionId =>
+    // {
+    //   return this.http.get(favoriteMoviesUrl(sessionId, 1))
+    //   .map(result =>
+    //   {
+    //     if (result.json().total_pages === 1)
+    //     {
+    //       return <Movie[]> result.json().results;
+    //     } else {
+    //       return this.http.get(favoriteMoviesUrl(sessionId, 1));
+    //     }
+    //   });
+    // });
 
       // let page = 1;
       // return this.http.get(favoriteMoviesUrl(sessionId, page))
@@ -93,7 +107,6 @@ export class MovieService
       //   .debounceTime(500)
       //   .distinctUntilChanged()
       //   .catch(this.handleError);
-    });
   }
 
   discoverMoviesFiltered(): Movie[]
