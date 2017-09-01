@@ -14,7 +14,7 @@ import { DetailComponent } from "./movies/details/detail.component";
 
 const appRoutes: Routes = [
   {
-    path: '**',
+    path: '*',
     redirectTo: '/dashboard'
   },
   {
