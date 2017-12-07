@@ -1,13 +1,15 @@
 <div *ngIf="persons.length > 0">
-    <a (click)="toggleOpen()"><h3>{{ headerTitle }}</h3></a>
-    <ul *ngIf="open" class="row persons">
-        <li class="col-lg-5" *ngFor="let person of persons">
-            <div class="col-lg-5"><img [src]="getProfileImage(person, 'w45')" (click)="gotoPersonDetail(person)" /></div>
-            <div class="col-lg-7">
-                <div class="row personName" (click)="gotoPersonDetail(person)">{{ person.name }}</div>
-                <div *ngIf="person.character" class="row job">{{ person.character }}</div>
-                <div *ngIf="person.job" class="row job">{{ person.job }}</div>
-            </div>
-        </li>
-    </ul>
+  <a (click)="toggleOpen()"><h4>{{ headerTitle }}</h4></a>
+  <hr *ngIf="open"/>
+  <ul *ngIf="open" class="row persons">
+    <li class="col-lg-5" *ngFor="let person of persons">
+      <div class="col-lg-5"><img [src]="getProfileImage(person, 'w45')" (click)="gotoPersonDetail(person)"/></div>
+      <div class="col-lg-7">
+        <div class="row personName" (click)="gotoPersonDetail(person)">{{ person.name }}</div>
+        <div *ngIf="person.character" class="row job">{{ person.character }}</div>
+        <div *ngIf="person.job" class="row job">{{ person.job }}</div>
+      </div>
+    </li>
+  </ul>
+  <hr *ngIf="open"/>
 </div>

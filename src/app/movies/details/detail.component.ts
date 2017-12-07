@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, Output, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Movie } from '../../model/movie';
 import { MovieInformation } from '../../model/movie-information';
 import { MovieService } from '../../service/movie.service';
 import { Util } from '../../util/movie.util';
-import { Person } from '../../model/person';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -18,9 +17,9 @@ export class DetailComponent {
     private movieId;
     private movieTitle;
 
-    @Output() onAddFavorite = new EventEmitter();
+    public movieInformation: MovieInformation;
 
-    movieInformation: MovieInformation;
+    @Output() onAddFavorite = new EventEmitter();
 
     constructor(private route: ActivatedRoute, private movieService: MovieService) {
         this.movieTitle = this.route.snapshot.params['title'];
@@ -29,33 +28,29 @@ export class DetailComponent {
         this.getMovieInformation(this.movieId);
     }
 
-    getMovieInformation(id: number) {
+    public getMovieInformation(id: number) {
         this.movieService.getMovieInformation(id, false)
             .subscribe(
-            movieData => {
-                this.movieInformation = movieData;
-                console.log(this.movieInformation);
-            },
-            error => console.log('ERROR: ' + error),
-            () => console.log('Retrieving movie information for', this.movieTitle, 'complete.')
+                movieData => {
+                    this.movieInformation = movieData;
+                    console.log(this.movieInformation);
+                },
+                error => console.log('ERROR: ' + error),
+                () => console.log('Retrieving movie information for', this.movieTitle, 'complete.')
             );
     }
 
-    getMoviePoster(movie: Movie): string {
+    public getMoviePoster(movie: Movie): string {
         return new Util().getImage(movie.posterPath, null, 'Poster');
     }
 
-    getProfileImage(person: Person): string {
-        return new Util().getImage(person.profilePath, 'w45', 'Profile');
-    }
-
     addFavorite() {
-      console.log('Add favorite ' + this.movieInformation.title);
-      this.movieService.addToFavorites(this.movieInformation.id, true).subscribe(response => {
-        if(response.status_code == 1) {
-          this.movieInformation.favorite = true;
-          this.onAddFavorite.emit(this.movie);
-        }
-      });
+        console.log('Add favorite ' + this.movieInformation.title);
+        this.movieService.addToFavorites(this.movieInformation.id, true).subscribe(response => {
+            if (response.status_code === 1) {
+                this.movieInformation.favorite = true;
+                this.onAddFavorite.emit(this.movie);
+            }
+        });
     }
 }

@@ -1,41 +1,40 @@
 <div class="row">
-    <div class="form-horizontal">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <div class="col-lg-5">
-                    <input type="text" class="form-control" [(ngModel)]="movieTitle" (keyup.enter)="searchMovies()" (focus)="movieTitle = ''" id="movieTitle" placeholder="Movie title..." autofocus />
-                </div>
-                <div class="col-lg-7">
-                    <button class="btn btn-default" [class.btn-warning]="adult" (click)="toggleAdult()">Include adult</button>
-                    <button class="btn btn-primary" (click)="searchMovies()">Find movies</button>
-                    <button class="btn btn-default" (click)="clearMovies()">Clear</button>
-                </div>
-            </div>
+  <div class="form-horizontal">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <div class="col-lg-5">
+          <input type="text" class="form-control" [(ngModel)]="movieTitle" (keyup.enter)="searchMovies()"
+                 (focus)="movieTitle = ''" id="movieTitle" placeholder="Movie title..." autofocus/>
         </div>
+        <div class="col-lg-7">
+          <button class="btn btn-default" [class.btn-warning]="adult" (click)="toggleAdult()">Include adult</button>
+          <button class="btn btn-primary" (click)="searchMovies()">Find movies</button>
+          <button class="btn btn-default" (click)="clearMovies()">Clear</button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-6">
-        <table *ngIf="movies.length > 0" class="table table-striped">
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>Title</th>
-                <th>Year</th>
-            </tr>
-            <tr *ngFor="let movie of movies" (click)="selectMovie(movie)">
-                <td><i [class.grey]="!movie.favorite" class="fa fa-heart" aria-hidden="true"></i></td>
-                <td><img [src]="getMoviePoster(movie)" [alt]="movie.title" class="moviePoster"/></td>
-                <td>{{ movie.id }}</td>
-                <td class="movieTitle">{{ movie.title }}</td>
-                <td><span class="movieYear">{{ movie.releaseDate | dateFormat:'yyyy' }}</span></td>
-            </tr>
-        </table>
-        <span *ngIf="displayNoMoviesFound"> No movies found </span>
-    </div>
-    <div class="col-lg-6" *ngIf="selectedMovie">
-        <movie-detail [movie]="selectedMovie" (addFavorite)="onAddFavorite($event)"></movie-detail>
-    </div>
+  <div class="col-lg-6">
+    <table *ngIf="movies.length > 0" class="table table-striped">
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Title</th>
+        <th>Year</th>
+      </tr>
+      <tr *ngFor="let movie of movies" (click)="selectMovie(movie)">
+        <td><i [class.grey]="!movie.favorite" class="fa fa-heart" aria-hidden="true"></i></td>
+        <td><img [src]="getMoviePoster(movie)" [alt]="movie.title" class="moviePoster"/></td>
+        <td class="movieTitle">{{ movie.title }}</td>
+        <td><span class="movieYear">{{ movie.releaseDate | dateFormat:'yyyy' }}</span></td>
+      </tr>
+    </table>
+    <span *ngIf="displayNoMoviesFound"> No movies found </span>
+  </div>
+  <div class="col-lg-6" *ngIf="selectedMovie">
+    <movie-detail [movie]="selectedMovie" (addFavorite)="onAddFavorite($event)"></movie-detail>
+  </div>
 </div>

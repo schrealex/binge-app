@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 
-import { Genre } from "../../model/genre";
-
 @Component({
     moduleId: module.id,
     selector: 'genres',
@@ -10,9 +8,13 @@ import { Genre } from "../../model/genre";
 
 export class GenresComponent {
 
-    @Input() genres: Genre[];
+    @Input() genres: any[];
 
     constructor() {
 
+    }
+
+    public getGenres() {
+        return this.genres.map(genre => genre.name).join(', ');
     }
 }
