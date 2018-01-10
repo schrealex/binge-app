@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -16,7 +16,6 @@ import { MovieService } from './service/movie.service';
 export class DashboardComponent implements OnInit, OnChanges {
 
     movies: Observable<Movie[]>;
-    // movies: Array<Movie>;
 
     removedMovie: string = '';
     mouseOver: boolean = false;
@@ -35,9 +34,7 @@ export class DashboardComponent implements OnInit, OnChanges {
     }
 
     getFavoriteMovies() {
-        console.log('getFavoriteMovies');
         this.movies = this.movieService.favoriteMovies();
-        // this.movies = new Array<Movie>();
     }
 
     getMoviePoster(movie: Movie): string {

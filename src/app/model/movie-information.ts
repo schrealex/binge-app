@@ -1,11 +1,10 @@
-import { Genre } from "./genre";
-import { Actor } from "./actor";
-import { CrewMember } from "./crewmember";
-import { MediaInformation } from "./media-information";
-import { Image } from "./image";
+import { Genre } from './genre';
+import { Actor } from './actor';
+import { CrewMember } from './crewmember';
+import { MediaInformation } from './media-information';
+import { Image } from './image';
 
-export class MovieInformation extends MediaInformation
-{
+export class MovieInformation extends MediaInformation {
     private _releaseDate: Date;
     private _runtime: number;
     private _tagline: string;
@@ -29,9 +28,9 @@ export class MovieInformation extends MediaInformation
                 public tagline: string,
                 public rating: number,
                 public votes: number,
-                public favorite: boolean = false)
-    {
-        super(id, imdbId, title, originalTitle, genres, directors, producers, writers, actors, posterPath, backdropPath, posters, backdrops, plot, rating, votes, favorite);
+                public favorite = false) {
+        super(id, imdbId, title, originalTitle, genres, directors, producers, writers, actors, posterPath, backdropPath,
+            posters, backdrops, plot, rating, votes, favorite);
 
         this._releaseDate = releaseDate;
         this._runtime = runtime;
