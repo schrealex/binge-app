@@ -1,10 +1,10 @@
-import { OvsoftwareAppPage } from './app.po';
+import { BingeAppPage } from './app.po';
 
-describe('ovsoftware-app App', function() {
-  let page: OvsoftwareAppPage;
+describe('binge-app App', function() {
+  let page: BingeAppPage;
 
   beforeEach(() => {
-    page = new OvsoftwareAppPage();
+    page = new BingeAppPage();
   });
 
   it('should display message saying app works', () => {

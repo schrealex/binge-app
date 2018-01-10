@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class OvsoftwareAppPage {
+export class BingeAppPage {
   navigateTo() {
     return browser.get('/');
   }
