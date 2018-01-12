@@ -1,19 +1,20 @@
 <div class="alert alert-success" *ngIf="addedToFavorites">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    {{addedMovie}} added to favorites
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  {{addedMovie}} added to favorites
 </div>
 
-
 <div class="row">
-    <div *ngFor="let movie of movies">
-        <div class="col-md-3">
-            <div class="thumbnail" (click)="addToFavorites(movie)" (mouseenter)="displayMouseOver()" (mouseleave)="displayMouseOver()">
-                <div class="overlay" >
-                    <span><i class="fa fa-heart" aria-hidden="true"></i></span>
-                </div>
-                <img [src]="getMoviePoster(movie)" style="height: 340px;">
-                <p style="text-align: center; font-weight: bold;">{{movie.title}}</p>
-            </div>
+  <div *ngIf="movies.length === 0" class="col-md-3 fa fa-spinner fa-pulse fa-5x fa-fw loading"></div>
+  <div *ngFor="let movie of movies">
+    <div class="col-md-3">
+      <div class="thumbnail" (click)="addToFavorites(movie)" (mouseenter)="displayMouseOver()"
+           (mouseleave)="displayMouseOver()">
+        <div class="overlay">
+          <span><i class="fa fa-heart" aria-hidden="true"></i></span>
         </div>
+        <img [src]="getMoviePoster(movie)" style="height: 340px;">
+        <p class="text-center"><strong>{{ movie.title }}</strong></p>
+      </div>
     </div>
+  </div>
 </div>

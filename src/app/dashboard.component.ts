@@ -8,18 +8,18 @@ import { MovieService } from './service/movie.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'dashboard',
+    selector: 'app-dashboard',
     templateUrl: 'dashboard.component.html',
     styleUrls: ['dashboard.component.scss']
 })
 
 export class DashboardComponent implements OnInit, OnChanges {
 
-    movies: Observable<Movie[]>;
+    movies: Movie[];
 
-    removedMovie: string = '';
-    mouseOver: boolean = false;
-    removedFromFavorites: boolean = false;
+    removedMovie = '';
+    mouseOver = false;
+    removedFromFavorites = false;
 
     constructor(private router: Router, private movieService: MovieService, title: Title) {
         title.setTitle('B I N G E / dashboard');
@@ -34,7 +34,9 @@ export class DashboardComponent implements OnInit, OnChanges {
     }
 
     getFavoriteMovies() {
-        this.movies = this.movieService.favoriteMovies();
+        this.movieService.favoriteMovies().subscribe(favoriteMovies => {
+            this.movies = favoriteMovies;
+        });
     }
 
     getMoviePoster(movie: Movie): string {
@@ -57,8 +59,6 @@ export class DashboardComponent implements OnInit, OnChanges {
     }
 
     gotoDetail(movie: Movie): void {
-        const link = ['/movie/detail', movie.title, movie.id];
-        console.log(link);
-        this.router.navigate(link);
+        this.router.navigate(['/movie/detail', movie.title, movie.id]);
     }
 }

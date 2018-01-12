@@ -1,19 +1,20 @@
 <div class="alert alert-success" *ngIf="removedFromFavorites">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    {{ removedMovie }} removed from favorites
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  {{ removedMovie }} removed from favorites
 </div>
 
 <div class="row">
-    <div *ngFor="let movie of movies | async" >
-        <div class="col-md-3">
-            <div class="thumbnail" (mouseenter)="displayMouseOver()" (mouseleave)="displayMouseOver()">
-                <div class="overlay">
-                    <span (click)="gotoDetail(movie)"><i class="fa fa-info" aria-hidden="true"></i></span>
-                    <span (click)="removeFromFavorites(movie)"><i class="fa fa-close" aria-hidden="true"></i></span>
-                </div>
-                <img [src]="getMoviePoster(movie)" style="height: 340px;">
-                <p style="text-align: center; font-weight: bold;">{{movie.title}}</p>
-            </div>
+  <div *ngIf="!movies" class="col-md-3 fa fa-spinner fa-pulse fa-5x fa-fw loading"></div>
+  <div *ngFor="let movie of movies">
+    <div class="col-md-3">
+      <div class="thumbnail" (mouseenter)="displayMouseOver()" (mouseleave)="displayMouseOver()">
+        <div class="overlay">
+          <span (click)="gotoDetail(movie)"><i class="fa fa-info" aria-hidden="true"></i></span>
+          <span (click)="removeFromFavorites(movie)"><i class="fa fa-close" aria-hidden="true"></i></span>
         </div>
+        <img [src]="getMoviePoster(movie)" style="height: 340px;">
+        <p style="text-align: center; font-weight: bold;">{{movie.title}}</p>
+      </div>
     </div>
+  </div>
 </div>
