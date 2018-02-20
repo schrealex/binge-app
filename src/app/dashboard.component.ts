@@ -1,7 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import { Movie } from './model/movie';
 import { Util } from './util/movie.util';
 import { MovieService } from './service/movie.service';
@@ -52,6 +51,7 @@ export class DashboardComponent implements OnInit, OnChanges {
         this.movieService.addToFavorites(movie.id, false).subscribe(response => {
             if (response.status_code === 13) {
                 this.removedFromFavorites = true;
+                window.scrollTo(0, 0);
                 console.log(`${this.removedMovie} removed from favorites`);
                 this.getFavoriteMovies();
             }
