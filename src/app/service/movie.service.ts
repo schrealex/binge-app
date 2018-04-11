@@ -41,6 +41,7 @@ export class MovieService {
     discoverMovies(): Observable<Movie[]> {
         console.log(discoverMoviesUrl);
         return this.http.get(discoverMoviesUrl).map(result => <Movie[]> result.json().results)
+            .map(result => console.log(result))
             .map(this.mapResponseToMovies()).catch(this.handleError);
     }
 
@@ -76,16 +77,19 @@ export class MovieService {
     discoverMoviesFiltered(): Movie[] {
         let discoveredMovies: Movie[] = [];
         let favoritedMovies: Movie[] = [];
-        let filteredMovies: Movie[] = [];
-        this.discoverMovies().flatMap(response => {
-            discoveredMovies = response;
+        const filteredMovies: Movie[] = [];
+        this.discoverMovies().flatMap(discoverMoviesResponse => {
+            console.log(discoverMoviesResponse);
+            discoveredMovies = discoverMoviesResponse;
             return this.favoriteMovies().map(response => {
                 favoritedMovies = response;
 
                 discoveredMovies.forEach(function (discoveredMovie) {
-                    let addMovieToFilteredMovies: boolean = true;
+                    let addMovieToFilteredMovies = true;
+                    // Find
+                    favoritedMovies.find(favoriteMovie => discoveredMovie.id === favoriteMovie.id);
                     favoritedMovies.forEach(function (favoriteMovie) {
-                        if (discoveredMovie.id == favoriteMovie.id) {
+                        if (discoveredMovie.id === favoriteMovie.id) {
                             addMovieToFilteredMovies = false;
                         }
                     });
